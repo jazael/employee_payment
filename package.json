@@ -1,0 +1,15 @@
+{
+  "name": "employee_payment",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/jazael/employee_payment.git",
+  "author": "Miguel Faubla",
+  "license": "MIT",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^24.7.1"
+  }
+}
