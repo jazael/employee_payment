@@ -1,5 +1,3 @@
-const readFile = require('./readfile');
+const calculatorSchedulsWorking = require('./salarypayments');
 
-const informationFile = readFile('./data.txt');
-
-console.log(informationFile.length);
+console.log(calculatorSchedulsWorking.calculatorSchedulsWorking('algo'));
