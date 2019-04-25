@@ -1,3 +1,5 @@
 const calculatorSchedulsWorking = require('./salarypayments');
 
-console.log(calculatorSchedulsWorking.calculatorSchedulsWorking('algo'));
+const res = calculatorSchedulsWorking.calculatorSchedulsWorking('./data.txt');
+
+console.log(res)

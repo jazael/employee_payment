@@ -1,16 +1,30 @@
 calculateDifferenceBetweenHours = (startTime, endTime) => {
-    const initialDate = new Date(0, startTime.split(':')[0]);
-    const finalDate = new Date(endTime.split(':')[1]);
-    console.log(initialDate)
-    console.log(finalDate)
-    let minutes = (initialDate - finalDate) / 1000 / 60;
+    const times = coversionTimeChainToTimeNumber(startTime, endTime);
+    let minutes = (times.endofworktime - times.startofworktime) / 1000 / 60;
     const hours = Math.floor(minutes / 60);
-    minutes = minutes % 60;
+    minutes = Math.floor(minutes % 60);
 
-    console.log(hours)
-    console.log(minutes)
-
-    return hours + '.' + minutes;
+    return hours + '.' + ( (minutes < 10) ? '0' + minutes : minutes );
 }
 
-module.exports = calculateDifferenceBetweenHours;
+coversionTimeChainToTimeNumber = (startTime, endTime) => {
+    const initialDate = new Date();
+    const arrInitTime = startTime.split(':');
+    initialDate.setHours(arrInitTime[0]);
+    initialDate.setMinutes(arrInitTime[1]);
+
+    const finalDate = new Date();
+    const arrFinalDate = endTime.split(':');
+    finalDate.setHours(arrFinalDate[0]);
+    finalDate.setMinutes(arrFinalDate[1]);
+
+    const startofworktime = initialDate.getTime();
+    const endofworktime = finalDate.getTime();
+
+    return { startofworktime, endofworktime };
+}
+
+module.exports = {
+    calculateDifferenceBetweenHours,
+    coversionTimeChainToTimeNumber
+};
