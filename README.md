@@ -51,9 +51,14 @@ Clone the repository and run `yarn install` for the download of the dependency u
 For the elaboration of the tests, Jest is used. To run the tests use the following command: 
 `yarn test`
 
+![image](https://user-images.githubusercontent.com/11983683/56771915-bcf11580-677d-11e9-9b7f-b77cea39939c.png)
+
+
 ## Steps to execute the code
 To execute the project use the following command:
 `yarn start`
+
+![image](https://user-images.githubusercontent.com/11983683/56771947-e8740000-677d-11e9-94b0-e66eb1f41c52.png)
 
 
 
