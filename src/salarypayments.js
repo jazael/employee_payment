@@ -4,8 +4,7 @@ const utils = require('../src/util')
 
 const calculatorSchedulsWorking = (file) => {
     const informationFile = readFile(file);
-    
-    return informationFile.map(value => console.log(calculationOfHoursWorked(value.schedules)));
+    return informationFile.map(value => `The amount to pay  ${value.employee} is: ${calculationOfHoursWorked(value.schedules)} USD`);
 }
 
 const calculationOfHoursWorked = (arr) => {
