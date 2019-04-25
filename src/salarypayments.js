@@ -4,8 +4,8 @@ const utils = require('../src/util')
 
 const calculatorSchedulsWorking = (file) => {
     const informationFile = readFile(file);
-
-    return informationFile.map(value => `The amount to pay  ${value.employee} is: ${calculationOfHoursWorked(value.schedules)} USD.`);
+    
+    return informationFile.map(value => console.log(calculationOfHoursWorked(value.schedules)));
 }
 
 const calculationOfHoursWorked = (arr) => {
@@ -63,12 +63,14 @@ const rulesToCalculateTheSalary = (timechain) => {
             salaryvalueperhour = constants.HOUR_PAYMENT.EVENING_AND_NIGHT;
         }
     else {
-        console.log('entro')
+        console.log('')
     }
 
     return salaryvalueperhour;
 }
 
 module.exports = {
-    calculatorSchedulsWorking
+    calculatorSchedulsWorking,
+    calculationOfHoursWorked,
+    rulesToCalculateTheSalary
 };
