@@ -1,30 +1,25 @@
-calculateDifferenceBetweenHours = (startTime, endTime) => {
-    const times = coversionTimeChainToTimeNumber(startTime, endTime);
-    let minutes = (times.endofworktime - times.startofworktime) / 1000 / 60;
-    const hours = Math.floor(minutes / 60);
-    minutes = Math.floor(minutes % 60);
-
-    return hours + '.' + ( (minutes < 10) ? '0' + minutes : minutes );
+padding = (...args) => {
+    const [str, len, char] = args;
+    return (Array(len).join(char) + str).substr(-len);
 }
 
-coversionTimeChainToTimeNumber = (startTime, endTime) => {
-    const initialDate = new Date();
-    const arrInitTime = startTime.split(':');
-    initialDate.setHours(arrInitTime[0]);
-    initialDate.setMinutes(arrInitTime[1]);
+differenceBetweenHours = (...args) => {
+    const [startTime, endTime, delimiter] = args;
+    const times = coversionTimeChainToTimeNumberRefactoring(startTime, endTime);
+    const diff = new Date(times.endofworktime - times.startofworktime);
 
-    const finalDate = new Date();
-    const arrFinalDate = endTime.split(':');
-    finalDate.setHours(arrFinalDate[0]);
-    finalDate.setMinutes(arrFinalDate[1]);
+    return padding(diff.getUTCHours(), 2, 0) + ''+ delimiter +'' + padding(diff.getUTCMinutes(), 2, 0);
+}
 
-    const startofworktime = initialDate.getTime();
-    const endofworktime = finalDate.getTime();
+coversionTimeChainToTimeNumberRefactoring = (startTime, endTime) => {
+    const day = "0 ";
+    const startofworktime = new Date(day + startTime).getTime();
+    const endofworktime = new Date(day + endTime).getTime();
 
-    return { startofworktime, endofworktime };
+    return { startofworktime, endofworktime }
 }
 
 module.exports = {
-    calculateDifferenceBetweenHours,
-    coversionTimeChainToTimeNumber
+    differenceBetweenHours,
+    coversionTimeChainToTimeNumberRefactoring
 };

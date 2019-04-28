@@ -26,8 +26,7 @@ describe('Salarypayments utilities module', () => {
             'SU20:00-21:00'
         ];
 
-        const calculationOfHoursWorked = 215;
-        expect(calculationOfHoursWorked).toBe(salarypayments.calculationOfHoursWorked(scheduleMocks));
+        expect(215).toBe(+salarypayments.calculationOfHoursWorked(scheduleMocks));
     })
 
     test('returns salary of the calculationOfHoursWorked', () => {
@@ -39,7 +38,7 @@ describe('Salarypayments utilities module', () => {
             'SU20:00-22:00'
         ];
 
-        const calculationOfHoursWorked = 255;
+        const calculationOfHoursWorked = 255.00;
         expect(calculationOfHoursWorked).not.toBe(salarypayments.calculationOfHoursWorked(scheduleMocks));
     })
 
@@ -47,18 +46,36 @@ describe('Salarypayments utilities module', () => {
         expect(typeof salarypayments.rulesToCalculateTheSalary).toEqual('function');
     })
 
-    test('returns hours and minutes of the rulesToCalculateTheSalary', () => {
-        const scheduleMocks = '10:00-12:00';
+    test('Returns the total amount of hours and minutes worked => rulesToCalculateTheSalary', () => {
+        const scheduleMocks = ['10:00', '12:00'];
+        const schedule_abbreviation = 'MO';
 
-        const valuePerHours = 15;
-        expect(valuePerHours).toBe(salarypayments.rulesToCalculateTheSalary(scheduleMocks));
+        const valuePerHours = 30;
+        expect(valuePerHours).toBe(salarypayments.rulesToCalculateTheSalary(scheduleMocks, schedule_abbreviation));
     })
 
-    test('returns hours and minutes of the rulesToCalculateTheSalary', () => {
-        const scheduleMocks = '19:00-20:00';
+    test('Returns the total amount of hours and minutes worked => rulesToCalculateTheSalary', () => {
+        const scheduleMocks = ['19:00', '20:00'];
+        const schedule_abbreviation = 'SU';
 
-        const valuePerHours = 20;
-        expect(valuePerHours).toBe(salarypayments.rulesToCalculateTheSalary(scheduleMocks));
+        const valuePerHours = 25;
+        expect(valuePerHours).toBe(salarypayments.rulesToCalculateTheSalary(scheduleMocks, schedule_abbreviation));
+    })
+
+    test('Returns the total amount of hours and minutes worked => rulesToCalculateTheSalary', () => {
+        const scheduleMocks = ['01:00', '22:45'];
+        const schedule_abbreviation = 'SU';
+
+        const valuePerHours = 522.8000000000001;
+        expect(valuePerHours).toBe(salarypayments.rulesToCalculateTheSalary(scheduleMocks, schedule_abbreviation));
+    })
+
+    test('Returns the total amount of hours and minutes worked => rulesToCalculateTheSalary', () => {
+        const scheduleMocks = ['00:10', '21:00'];
+        const schedule_abbreviation = 'SU';
+
+        const valuePerHours = 491.55;
+        expect(valuePerHours).toBe(salarypayments.rulesToCalculateTheSalary(scheduleMocks, schedule_abbreviation));
     })
 
 });
